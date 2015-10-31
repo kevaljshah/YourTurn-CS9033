@@ -5,13 +5,13 @@ import android.os.Bundle;
 import com.example.yourturnmobileapp.R;
 
 /**
- * Created by Keval on 31-10-2015.
+ * Created by Apoorva Walimbe on 10/31/2015.
  */
-public class SplashScreenActivity extends Activity {
+public class AddTaskActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splashscreen);
+        setContentView(R.layout.activity_main);
     }
 }
