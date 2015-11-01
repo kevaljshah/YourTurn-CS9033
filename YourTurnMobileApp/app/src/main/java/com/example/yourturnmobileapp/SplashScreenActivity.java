@@ -20,7 +20,7 @@ public class SplashScreenActivity extends Activity {
 
         final ImageView slr = (ImageView) findViewById(R.id.imageView);
         final Animation rt = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
-        //final Animation fo = AnimationUtils.loadAnimation(getBaseContext(),R.anim.fade_out);
+       // final Animation fo = AnimationUtils.loadAnimation(getBaseContext(),R.anim.fade_out);
 
         slr.startAnimation(rt);
         rt.setAnimationListener(new Animation.AnimationListener() {

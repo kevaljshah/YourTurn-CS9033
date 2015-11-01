@@ -6,10 +6,14 @@ android {
 
     defaultConfig {
         applicationId "com.example.yourturnmobileapp"
-        minSdkVersion 22
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
+    }
+
+    repositories {
+        mavenCentral()
     }
     buildTypes {
         release {
@@ -21,4 +25,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
 }
