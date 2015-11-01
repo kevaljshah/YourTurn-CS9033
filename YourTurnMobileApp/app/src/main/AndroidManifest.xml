@@ -22,7 +22,7 @@
     </activity>
 
     <activity
-        android:name=".SplashScreenActivity">
+        android:name="com.example.yourturnmobileapp.SplashScreenActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
             <category android:name="android.intent.category.LAUNCHER"></category>
