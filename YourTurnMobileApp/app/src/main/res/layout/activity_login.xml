@@ -101,6 +101,7 @@
         android:textSize="15dp"
         android:textStyle="bold"
         android:layout_above="@+id/imageButton2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:clickable="true" />
 
 </RelativeLayout>

@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
  * Created by Keval on 02-11-2015.
  */
 public class LoginActivity extends Activity implements View.OnClickListener {
-    Button imageButton;
+    ImageButton imageButton;
     EditText editText,editText2;
     TextView textView3;
 
@@ -23,7 +24,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         editText = (EditText) findViewById(R.id.editText);
         editText2 = (EditText) findViewById(R.id.editText2);
-        imageButton = (Button) findViewById(R.id.imageView);
+        imageButton = (ImageButton) findViewById(R.id.imageButton);
         textView3 = (TextView) findViewById(R.id.textView3);
         imageButton.setOnClickListener(this);
 

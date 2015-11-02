@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 /**
  * Created by Keval on 02-11-2015.
  */
 public class RegisterActivity extends Activity implements View.OnClickListener {
 
-    Button imageButton4;
+    ImageButton imageButton4;
     EditText editText3,editText4,editText5,editText6,editText7,editText8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         editText6 = (EditText)findViewById(R.id.editText6);
         editText7 = (EditText)findViewById(R.id.editText7);
         editText8 = (EditText)findViewById(R.id.editText8);
-        imageButton4 = (Button)findViewById(R.id.imageButton4);
+        imageButton4 = (ImageButton)findViewById(R.id.imageButton4);
 
 
         imageButton4.setOnClickListener(this);
