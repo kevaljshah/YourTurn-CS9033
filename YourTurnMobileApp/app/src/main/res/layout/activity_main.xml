@@ -24,6 +24,6 @@
         android:text="Supplies"
         android:id="@+id/supplies"
         android:onClick="startCreateSupplyActivity"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="50dp" />
 
 </RelativeLayout>
