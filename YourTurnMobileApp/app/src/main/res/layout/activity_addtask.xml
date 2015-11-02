@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@drawable/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Add Task"
+        android:id="@+id/textView2"
+        android:layout_marginTop="66dp"
+        android:textColor="#ff8600"
+        android:textSize="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:id="@+id/view" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskName"
+        android:hint="Task Name"
+        android:singleLine="true"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="27dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/view" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskDesc"
+        android:layout_below="@+id/taskName"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/taskName"
+        android:hint="Task Description" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/dueDate"
+        android:hint="Due Date"
+        android:layout_below="@+id/taskDesc"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/assignee"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/dueDate"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="31dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Alert"
+        android:id="@+id/alertButton"
+        android:layout_below="@+id/assignee"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=">>"
+        android:id="@+id/button3"
+        android:layout_alignBottom="@+id/alertButton"
+        android:layout_alignEnd="@+id/assignee"
+        android:background="#ffffff" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelTask"
+        android:layout_below="@+id/alertButton"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/cancelbutton"
+        android:layout_alignEnd="@+id/alertButton"
+        android:layout_alignParentEnd="false" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitTask"
+        android:layout_alignTop="@+id/cancelTask"
+        android:layout_alignEnd="@+id/assignee"
+        android:background="@drawable/submitbutton"
+        android:layout_alignBottom="@+id/cancelTask"
+        android:layout_alignStart="@+id/button3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:foreground="@drawable/appheader"
+        android:background="@drawable/appheader"
+        android:layout_marginBottom="61dp"
+        android:layout_above="@+id/view"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
