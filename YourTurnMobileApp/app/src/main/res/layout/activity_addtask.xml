@@ -91,7 +91,7 @@
         android:layout_below="@+id/alertButton"
         android:layout_alignParentStart="false"
         android:layout_marginTop="27dp"
-        android:background="@drawable/cancelbutton"
+        android:background="@drawable/cancelbuttonsmall"
         android:layout_alignEnd="@+id/alertButton"
         android:layout_alignParentEnd="false" />
 
@@ -101,7 +101,7 @@
         android:id="@+id/submitTask"
         android:layout_alignTop="@+id/cancelTask"
         android:layout_alignEnd="@+id/assignee"
-        android:background="@drawable/submitbutton"
+        android:background="@drawable/submitsmall"
         android:layout_alignBottom="@+id/cancelTask"
         android:layout_alignStart="@+id/button3" />
 
@@ -110,9 +110,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView3"
         android:foreground="@drawable/appheader"
-        android:background="@drawable/appheader"
         android:layout_marginBottom="61dp"
         android:layout_above="@+id/view"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:src="@drawable/appheader" />
 
 </RelativeLayout>
