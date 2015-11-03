@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class LoginActivity extends Activity implements View.OnClickListener {
     ImageButton imageButton;
     EditText editText,editText2;
-    TextView textView3;
+    Button Reghere;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         editText = (EditText) findViewById(R.id.editText);
         editText2 = (EditText) findViewById(R.id.editText2);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
-        textView3 = (TextView) findViewById(R.id.textView3);
+        Reghere = (Button) findViewById(R.id.Reghere);
         imageButton.setOnClickListener(this);
+        Reghere.setOnClickListener(this);
 
 
     }
@@ -40,7 +41,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 startActivity((new Intent(this, MainActivity.class)));
 
                 break;
-            case R.id.textView3:
+            case R.id.Reghere:
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
         }

@@ -5,7 +5,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="16dp" tools:context="com.example.yourturnmobileapp.LoginActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:clickable="true">
 
     <EditText
         android:layout_width="wrap_content"
@@ -93,15 +94,16 @@
         android:layout_alignParentStart="true"
         android:src="@drawable/appheader" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register Here"
-        android:id="@+id/textView3"
+        android:id="@+id/Reghere"
         android:textSize="15dp"
         android:textStyle="bold"
         android:layout_above="@+id/imageButton2"
         android:layout_centerHorizontal="true"
-        android:clickable="true" />
+        android:clickable="true"
+        android:background="@android:color/transparent" />
 
 </RelativeLayout>
