@@ -22,10 +22,10 @@ public class AddTaskActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addtask);
+        setContentView(R.layout.activity_add_task);
 
-        final ImageButton createTask = (ImageButton) findViewById(R.id.submitTask);
-        createTask.setOnClickListener(new View.OnClickListener() {
+        final ImageButton createTask1 = (ImageButton) findViewById(R.id.createTask1);
+        createTask1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Task task = createTask();
@@ -33,8 +33,8 @@ public class AddTaskActivity extends Activity {
             }
         });
 
-        final ImageButton cancelTask = (ImageButton) findViewById(R.id.cancelTask);
-        cancelTask.setOnClickListener(new View.OnClickListener() {
+        final ImageButton canTask = (ImageButton) findViewById(R.id.canTask);
+        canTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cancelTask();
