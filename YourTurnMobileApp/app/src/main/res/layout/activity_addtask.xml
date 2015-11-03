@@ -16,7 +16,9 @@
         android:textColor="#ff8600"
         android:textSize="35dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        />
 
     <View
         android:layout_width="fill_parent"
@@ -24,6 +26,7 @@
         android:background="#c0c0c0"
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:id="@+id/view" />
 
     <EditText
@@ -35,7 +38,9 @@
         android:layout_below="@+id/view"
         android:layout_marginTop="27dp"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/view" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignEnd="@+id/view"
+        android:layout_alignRight="@+id/view"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -43,7 +48,9 @@
         android:id="@+id/taskDesc"
         android:layout_below="@+id/taskName"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignEnd="@+id/taskName"
+        android:layout_alignRight="@+id/taskName"
         android:hint="Task Description" />
 
     <EditText
@@ -54,7 +61,8 @@
         android:id="@+id/dueDate"
         android:hint="Due Date"
         android:layout_below="@+id/taskDesc"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -63,6 +71,7 @@
         android:spinnerMode="dropdown"
         android:layout_below="@+id/dueDate"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="31dp" />
 
     <TextView
@@ -72,7 +81,8 @@
         android:text="Alert"
         android:id="@+id/alertButton"
         android:layout_below="@+id/assignee"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -82,6 +92,7 @@
         android:id="@+id/button3"
         android:layout_alignBottom="@+id/alertButton"
         android:layout_alignEnd="@+id/assignee"
+        android:layout_alignRight="@+id/assignee"
         android:background="#ffffff" />
 
     <ImageButton
@@ -90,10 +101,13 @@
         android:id="@+id/cancelTask"
         android:layout_below="@+id/alertButton"
         android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
         android:layout_marginTop="27dp"
-        android:background="@drawable/cancelbuttonsmall"
+        android:background="@drawable/cancelbutton"
         android:layout_alignEnd="@+id/alertButton"
-        android:layout_alignParentEnd="false" />
+        android:layout_alignRight="@+id/alertButton"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -101,9 +115,11 @@
         android:id="@+id/submitTask"
         android:layout_alignTop="@+id/cancelTask"
         android:layout_alignEnd="@+id/assignee"
-        android:background="@drawable/submitsmall"
+        android:layout_alignRight="@+id/assignee"
+        android:background="@drawable/submitbutton"
         android:layout_alignBottom="@+id/cancelTask"
-        android:layout_alignStart="@+id/button3" />
+        android:layout_alignStart="@+id/button3"
+        android:layout_alignLeft="@+id/button3"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -113,6 +129,7 @@
         android:layout_marginBottom="61dp"
         android:layout_above="@+id/view"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:src="@drawable/appheader" />
 
 </RelativeLayout>
