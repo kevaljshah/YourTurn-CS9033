@@ -9,6 +9,7 @@ android {
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
+        multiDexEnabled = true
     }
     buildTypes {
         release {
@@ -21,5 +22,8 @@ android {
 }
 
 dependencies {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/mysql-connector-java-3.0.17-ga-bin.jar')
 }

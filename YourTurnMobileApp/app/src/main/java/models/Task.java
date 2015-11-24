@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import android.util.Log;
 
 /**
- * Created by appur_000 on 10/31/2015.
+ * Created by Apoorva on 10/31/2015.
  */
 public class Task implements Parcelable {
 
@@ -14,6 +14,9 @@ public class Task implements Parcelable {
     private String taskDesc;
     private String dueDate;
     private String assignee;
+    private String assignor;
+    private boolean reminder;
+    private boolean status;
 
     public long getTaskId() {
         return taskId;
@@ -55,6 +58,29 @@ public class Task implements Parcelable {
         this.assignee = assignee;
     }
 
+    public String getAssignor() {
+        return assignor;
+    }
+
+    public void setAssignor(String assignor) {
+        this.assignor = assignor;
+    }
+
+    public boolean isReminder() {
+        return reminder;
+    }
+
+    public void setReminder(boolean reminder) {
+        this.reminder = reminder;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public static final Parcelable.Creator<Task> CREATOR = new Parcelable.Creator<Task>() {
         public Task createFromParcel(Parcel p) {
@@ -72,6 +98,8 @@ public class Task implements Parcelable {
         this.taskDesc = p.readString();
         this.dueDate = p.readString();
         this.assignee = p.readString();
+        this.assignor = p.readString();
+        //this.reminder = p.
     }
 
     public Task(long taskId, String taskName, String taskDesc, String dueDate, String assignee) {
@@ -80,18 +108,6 @@ public class Task implements Parcelable {
 
     public Task() {
     }
-
-    /*public Person(String name, int personID, String phoneNum, String currentLocation, String destination, String eta) {
-
-        Log.d("Person object: ", name);
-        this.name = name;
-        this.personID = personID;
-        this.phoneNum = phoneNum;
-        this.currentLocation = currentLocation;
-        this.destination = destination;
-        this.eta = eta;
-        // TODO - fill in here, please note you must have more arguments here
-    }*/
 
     /**
      * Serialize Person object by using writeToParcel.
