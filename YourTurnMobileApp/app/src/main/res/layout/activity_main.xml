@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Supplies"
         android:id="@+id/supplies"
-        android:onClick="startCreateSupplyActivity"
+        android:onClick="startCreateSupplyList"
         android:layout_above="@+id/button"
         android:layout_alignLeft="@+id/button"
         android:layout_alignStart="@+id/button"

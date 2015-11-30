@@ -46,6 +46,12 @@
         </activity>
 
         <activity
+            android:name=".AddMemberActivity"
+            android:label="add_member">
+
+        </activity>
+
+        <activity
             android:name=".LoginActivity"
             android:label="@string/login_activity">
 
