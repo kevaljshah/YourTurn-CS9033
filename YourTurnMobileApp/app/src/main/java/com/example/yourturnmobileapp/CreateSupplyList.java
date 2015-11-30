@@ -26,7 +26,7 @@ public class CreateSupplyList extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_create_supply_list);
+		setContentView(R.layout.activity_create_supply);
 		final EditText editText = (EditText) findViewById(R.id.addItem);
 		final ListView listView = (ListView)findViewById(R.id.list);
 		adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
