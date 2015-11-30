@@ -8,20 +8,39 @@
     android:background ="@drawable/background">
 
     <EditText
-        android:layout_width="240dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_supply"
-        android:hint="Add Item"
-        android:layout_marginTop="25dp"
-        />
+        android:id="@+id/addItem"
+        android:hint="Add Item Here"
+        android:layout_marginTop="51dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/add" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD"
-        android:id="@+id/add_to_list"
-        android:layout_toRightOf="@id/add_supply"
-        android:layout_marginTop="25dp" />
+        android:id="@+id/add"
+        android:src="@drawable/add"
+        android:background="#0000"
+        android:layout_alignBottom="@+id/addItem"
+        android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:layout_below="@+id/addItem"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/buy" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buy"
+        android:background="#0000"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/buynow" />
 
 </RelativeLayout>

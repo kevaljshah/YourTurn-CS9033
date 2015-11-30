@@ -5,11 +5,11 @@ android {
     buildToolsVersion '21.1.2'
     defaultConfig {
         applicationId "com.example.yourturnmobileapp"
-        minSdkVersion 15
+        minSdkVersion 11
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
-        multiDexEnabled = true
+        multiDexEnabled true
     }
 
     repositories {
@@ -30,7 +30,9 @@ dependencies {
     targetCompatibility = 1.7
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/mysql-connector-java-3.0.17-ga-bin.jar')
+    compile 'com.facebook.android:facebook-android-sdk:4.2.0'
     compile 'com.google.android.gms:play-services:8.3.0'
-    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile 'com.android.support:appcompat-v7:21.0.3'
+
 
 }
