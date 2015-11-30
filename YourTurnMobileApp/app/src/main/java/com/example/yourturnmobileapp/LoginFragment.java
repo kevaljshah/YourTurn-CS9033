@@ -13,11 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -26,6 +28,10 @@ public class LoginFragment extends Fragment {
 
 
     private CallbackManager mcallback;
+    private AccessTokenTracker tokenTrack;
+    private ProfileTracker pTrack;
+
+
     private FacebookCallback<LoginResult> mcallresult = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
@@ -61,7 +67,20 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
         mcallback=CallbackManager.Factory.create();
+        tokenTrack = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
 
+            }
+        };
+        pTrack = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
+
+            }
+        };
+        tokenTrack.startTracking();
+        pTrack.startTracking();
     }
 
     @Override
@@ -81,6 +100,28 @@ public class LoginFragment extends Fragment {
         fbloginbutton.setFragment(this);
         fbloginbutton.registerCallback(mcallback,mcallresult);
     }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Profile p = Profile.getCurrentProfile();
+        if(p!=null) {
+
+            Toast.makeText(getActivity().getApplicationContext(), "Welcome " +p.getName(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        tokenTrack.stopTracking();
+        pTrack.stopTracking();
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent i)
