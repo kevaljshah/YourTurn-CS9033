@@ -40,4 +40,12 @@
         android:layout_alignRight="@+id/button"
         android:layout_alignEnd="@+id/button" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invite Roomie"
+        android:id="@+id/addmember"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

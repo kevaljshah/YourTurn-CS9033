@@ -39,5 +39,13 @@
         android:src="@drawable/addmemberbutton"
         android:background="@android:color/transparent" />
 
+    <FrameLayout
+        android:id="@+id/snackbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="16dp"/>
+
 
 </RelativeLayout>

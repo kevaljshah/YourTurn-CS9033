@@ -19,7 +19,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 		button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(this);
-    
+
+		button = (Button) findViewById(R.id.addmember);
+		button.setOnClickListener(this);
 	}
 
 	@Override
@@ -27,6 +29,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		switch (v.getId()) {
 			case R.id.button:
 				startActivity((new Intent(this,AddTaskActivity.class)));
+
+				break;
+			case R.id.addmember:
+				startActivity(new Intent(this, AddMemberActivity.class));
 
 				break;
 		}
