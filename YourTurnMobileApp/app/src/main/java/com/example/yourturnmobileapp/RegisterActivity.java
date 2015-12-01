@@ -29,12 +29,12 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editText3 = (EditText)findViewById(R.id.editText3);
-        editText4 = (EditText)findViewById(R.id.editText4) ;
-        editText5 = (EditText)findViewById(R.id.editText5);
+        editText3 = (EditText)findViewById(R.id.username);
+        editText4 = (EditText)findViewById(R.id.useremail) ;
+        editText5 = (EditText)findViewById(R.id.userphno);
         editText6 = (EditText)findViewById(R.id.editText6);
         editText7 = (EditText)findViewById(R.id.editText7);
-        editText8 = (EditText)findViewById(R.id.editText8);
+        editText8 = (EditText)findViewById(R.id.userbdate);
         imageButton4 = (ImageButton)findViewById(R.id.imageButton4);
 
 
@@ -49,8 +49,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
                 User user = registerUser();
                 saveUser(user);
-                startActivity(new Intent(this,MainActivity.class));
-
                 break;
         }
     }
@@ -58,20 +56,20 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     public User registerUser() {
         User user = new User();
 
-        EditText name = (EditText) findViewById(R.id.taskName1);
-        String uName = name.getText().toString();
+        EditText username = (EditText) findViewById(R.id.username);
+        String uName = username.getText().toString();
         user.setUserName(uName);
 
-        EditText desc = (EditText) findViewById(R.id.taskDesc1);
-        String uPhNo = desc.getText().toString();
+        EditText userphno = (EditText) findViewById(R.id.userphno);
+        String uPhNo = userphno.getText().toString();
         user.setUserNumber(uPhNo);
 
-        EditText assignee = (EditText) findViewById(R.id.assignee1);
-        String uEmail = assignee.getText().toString();
+        EditText uemail = (EditText) findViewById(R.id.useremail);
+        String uEmail = uemail.getText().toString();
         user.setUserEmail(uEmail);
 
-        EditText dueDate = (EditText) findViewById(R.id.dueDate1);
-        String uBDate = dueDate.getText().toString();
+        EditText userBDate = (EditText) findViewById(R.id.userbdate);
+        String uBDate = userBDate.getText().toString();
         user.setUserBDate(uBDate);
 
         return user;
@@ -109,8 +107,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         setResult(RESULT_OK, intent);
         RegisterDatabaseHelper databaseHelper = new RegisterDatabaseHelper(getBaseContext());
         long taskID = databaseHelper.insertUser(user);
-        Toast.makeText(getBaseContext(), "Task created successfully.", Toast.LENGTH_LONG).show();
-        Log.d("Task created with id: ", Long.toString(taskID));
+        Toast.makeText(getBaseContext(), "User Registered successfully.", Toast.LENGTH_LONG).show();
+        Log.d("USer created with id: ", Long.toString(taskID));
         //finish();
         Intent intent1 = new Intent(getBaseContext(), MainActivity.class);
         startActivity(intent1);

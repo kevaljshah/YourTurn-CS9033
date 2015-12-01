@@ -30,6 +30,21 @@
         <activity
             android:name=".AddTaskActivity"
             android:label="activity_label">
+        </activity>
+
+        <activity
+            android:name=".ViewTaskActivity"
+            android:label="activity_label">
+        </activity>
+
+        <activity
+            android:name=".ViewTaskDetailsActivity"
+            android:label="activity_label">
+        </activity>
+
+        <activity
+            android:name=".RegisterActivity"
+            android:label="activity_label">
 
         </activity>
 
@@ -54,11 +69,6 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/login_activity">
-
-        </activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:label="@string/register_activity">
 
         </activity>
     </application>
