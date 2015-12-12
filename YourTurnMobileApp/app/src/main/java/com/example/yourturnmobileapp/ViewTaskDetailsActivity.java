@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,7 +18,6 @@ import models.Task;
 public class ViewTaskDetailsActivity extends Activity {
 
     private static final String TAG = "ViewTaskDetailsActivity";
-    private Intent newIntent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,19 +30,20 @@ public class ViewTaskDetailsActivity extends Activity {
         //Log.d("detail name",task.getTaskName());
         //Log.d("detail desc", task.getTaskDesc());
         //Task task = getIntent().getExtras().
-        viewTask(task);
-    }
 
-    public Task getTask(Intent i) {
-        Task task = i.getParcelableExtra("TaskObject");
-        return task;
-    }
+       viewTask(task);
 
-    @Override
-    public void onNewIntent(Intent intent) {
-        newIntent = intent;
-    }
 
+        final ImageButton createTask1 = (ImageButton) findViewById(R.id.goHome);
+        createTask1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
 
 
     public void viewTask(Task task) {
