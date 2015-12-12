@@ -124,7 +124,21 @@ public class Task implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(taskId);
+        dest.writeString(taskName);
+        dest.writeString(taskDesc);
+        dest.writeString(dueDate);
+        dest.writeString(assignee);
+        dest.writeString(assignor);
+    }
 
+    public void readFromParcel(Parcel in) {
+        taskId = in.readLong();
+        taskName = in.readString();
+        taskDesc = in.readString();
+        dueDate = in.readString();
+        assignee = in.readString();
+        assignor = in.readString();
     }
 
     @Override

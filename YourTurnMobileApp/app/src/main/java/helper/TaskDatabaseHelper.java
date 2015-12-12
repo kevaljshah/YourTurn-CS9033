@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import models.Task;
 
 /**
@@ -69,9 +71,23 @@ public class TaskDatabaseHelper extends SQLiteOpenHelper{
         return getWritableDatabase().insert(TASK_DATABASE_NAME, null, values);
     }
 
-    public Cursor fetchTasks() {
+    public ArrayList<Task> fetchTasks() {
+        ArrayList<Task> tasks = new ArrayList<Task>();
         Cursor cursor = getReadableDatabase().rawQuery(FETCH_TASKS_QUERY, null);
-        return cursor;
+        if(cursor.moveToFirst()) {
+            do {
+                Task task = new Task();
+                task.setTaskId(Long.parseLong(cursor.getString(0)));
+                task.setTaskName(cursor.getString(1));
+                task.setTaskDesc(cursor.getString(2));
+                task.setDueDate(cursor.getString(3));
+                task.setAssignee(cursor.getString(4));
+                task.setReminder(Boolean.getBoolean(cursor.getString(5)));
+                task.setStatus(Boolean.getBoolean(cursor.getString(6)));
+                tasks.add(task);
+            } while(cursor.moveToNext());
+        }
+        return tasks;
     }
 
 }

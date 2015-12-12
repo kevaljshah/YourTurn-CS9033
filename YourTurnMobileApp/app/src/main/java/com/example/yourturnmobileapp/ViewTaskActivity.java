@@ -1,6 +1,7 @@
 package com.example.yourturnmobileapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,23 +14,52 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import helper.CustomListAdapter;
 import helper.TaskDatabaseHelper;
 import models.Task;
 
 /**
- * Created by appur_000 on 11/30/2015.
+ * Created by Apoorva Walimbe on 11/30/2015.
  */
 public class ViewTaskActivity extends Activity {
 
     private static final String TAG = "ViewTaskActivity";
     Task task = new Task();
+    ListView listView;
+    public Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_task);
-        viewTasks();
+
+        context=this;
+
+        //listView=(ListView) findViewById(R.id.listView);
+        //listView.setAdapter(new CustomAdapter(this, prgmNameList, prgmImages));
+        final ArrayList<Task> tasks = viewTasks();
+
+        CustomListAdapter adapter=new CustomListAdapter(this, tasks);
+        listView=(ListView)findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // TODO Auto-generated method stub
+                Task selectedTaskItem = tasks.get(+position);
+                //String selectedTask = tasks.get(+position).getTaskName();
+                //Toast.makeText(getApplicationContext(), selectedTask, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(), ViewTaskDetailsActivity.class);
+                intent.putExtra("TaskObject", selectedTaskItem);
+                intent.putExtra("TaskName", selectedTaskItem.getTaskName());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -47,7 +77,7 @@ public class ViewTaskActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void viewTasks() {
+    /*private void viewTasks() {
         TaskDatabaseHelper databaseHelper = new TaskDatabaseHelper(getBaseContext());
         Cursor cursor = databaseHelper.fetchTasks();
 
@@ -94,5 +124,13 @@ public class ViewTaskActivity extends Activity {
             });
 
         }
+    }*/
+
+    private ArrayList<Task> viewTasks() {
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        TaskDatabaseHelper databaseHelper = new TaskDatabaseHelper(getBaseContext());
+        //Cursor cursor = databaseHelper.fetchTasks();
+        tasks = databaseHelper.fetchTasks();
+        return tasks;
     }
 }
