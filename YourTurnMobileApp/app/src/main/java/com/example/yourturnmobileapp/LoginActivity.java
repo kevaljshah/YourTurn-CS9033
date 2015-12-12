@@ -24,7 +24,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     EditText editText,editText2;
     Button Reghere;
     LoginButton fblogin;
-    Intent data;
     private CallbackManager callbackManager;
 
 
@@ -47,6 +46,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         fblogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
                 Intent mainLobby = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(mainLobby);
             }
@@ -64,13 +64,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         });
 
 
-    }
-
-    public void startMainActivity(View view) {
-
-        // TODO - fill in here
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivityForResult(intent, 1);
     }
 
     @Override

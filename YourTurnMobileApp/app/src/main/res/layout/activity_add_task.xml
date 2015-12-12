@@ -1,152 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="16dp" tools:context="com.example.yourturnmobileapp.AddTaskActivity"
-    android:background="@drawable/background">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:paddingBottom="16dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.yourturnmobileapp.AddTaskActivity">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/appheader"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="420dp"
-        android:layout_alignParentBottom="true" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:src="@drawable/appheader"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Add Task"
-        android:id="@+id/textView"
-        android:textColor="#ff8700"
-        android:textSize="35dp"
-        android:layout_marginTop="68dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Task"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ff8700"
+            android:textSize="35dp"
+            android:layout_below="@+id/imageView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"
-        android:id="@+id/view"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true" />
+        <View
+            android:id="@+id/view"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView"
+            android:background="#c0c0c0"
+            android:layout_marginBottom="30dp"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/taskName"
-        android:hint="Task Name"
-        android:layout_below="@+id/view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/view"
-        android:layout_alignEnd="@+id/view" />
+        <EditText
+            android:id="@+id/taskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/view"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/view"
+            android:layout_below="@+id/view"
+            android:ems="10"
+            android:hint="Task Name"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/taskDesc"
-        android:hint="Task Description"
-        android:layout_below="@+id/taskName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/taskName"
-        android:layout_alignEnd="@+id/taskName" />
+        <EditText
+            android:id="@+id/taskDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/taskName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/taskName"
+            android:layout_below="@+id/taskName"
+            android:ems="10"
+            android:hint="Task Description"
+            android:inputType="textEmailAddress" />
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/dueDate"
-        android:background="#ffffffff"
-        android:hint="Due Date"
-        android:layout_below="@+id/taskDesc"
-        android:layout_alignRight="@+id/taskDesc"
-        android:layout_alignEnd="@+id/taskDesc"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="8dp" />
+        <EditText
+            android:id="@+id/dueDate"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/taskDesc"
+            android:layout_alignRight="@+id/taskDesc"
+            android:layout_below="@+id/taskDesc"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
+            android:background="#ffffffff"
+            android:ems="10"
+            android:hint="Due Date"
+            android:inputType="date" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createTask1"
-        android:src="@drawable/submitsmall"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/view"
-        android:layout_alignEnd="@+id/view"
-        android:layout_alignTop="@+id/imageButton4"
-        android:layout_marginLeft="39dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="43dp"
-        android:scaleType="centerCrop"
-        android:background="@android:color/transparent" />
+        <ImageButton
+            android:id="@+id/createTask1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/submitbutton"
+            android:layout_below="@+id/assignee"
+            android:layout_alignRight="@+id/assignee"
+            android:layout_alignEnd="@+id/assignee"
+            android:layout_marginTop="108dp" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/canTask"
-        android:src="@drawable/cancelbuttonsmall"
-        android:scaleType="centerCrop"
-        android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/imageButton4"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginRight="41dp"
-        android:layout_marginEnd="41dp" />
+        <ImageButton
+            android:id="@+id/canTask"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cancelbutton"
+            android:layout_alignTop="@+id/createTask1"
+            android:layout_alignLeft="@+id/dueDate"
+            android:layout_alignStart="@+id/dueDate" />
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/assignee"
-        android:prompt="@string/select"
-        android:layout_above="@+id/setReminder"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <Spinner
+            android:id="@+id/assignee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dueDate"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:prompt="@string/select" />
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/alarmTimePicker"
-        android:background="#ffffffff"
-        android:layout_below="@+id/assignee"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/assignee"
-        android:layout_alignEnd="@+id/assignee"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:visibility="invisible" />
+        <EditText
+            android:id="@+id/alarmTimePicker"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:background="#ffffffff"
+            android:ems="10"
+            android:inputType="date"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/assignee"
+            android:layout_marginBottom="30dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Reminder"
-        android:id="@+id/setReminder"
-        android:gravity="left|center_vertical"
-        android:layout_above="@+id/canTask"
-        android:layout_alignLeft="@+id/alarmTimePicker"
-        android:layout_alignStart="@+id/alarmTimePicker"
-        android:layout_alignRight="@+id/assignee"
-        android:layout_alignEnd="@+id/assignee"
-        android:background="#03ffffff" />
+        <Button
+            android:id="@+id/setReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#03ffffff"
+            android:gravity="left|center_vertical"
+            android:text="Set Reminder"
+            android:layout_below="@id/assignee"
+            android:layout_marginBottom="30dp"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
