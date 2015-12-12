@@ -47,8 +47,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         fblogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                startActivity(data);
-
+                Intent mainLobby = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(mainLobby);
             }
 
             @Override
