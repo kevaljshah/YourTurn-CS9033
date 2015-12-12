@@ -24,7 +24,9 @@
         android:text="Add Task"
         android:id="@+id/button"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/addmember"
+        android:layout_toStartOf="@+id/addmember"
+        android:background="#ff8700" />
 
 
     <Button
@@ -35,10 +37,9 @@
         android:id="@+id/supplies"
         android:onClick="startCreateSupplyList"
         android:layout_above="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_toRightOf="@+id/button"
+        android:layout_alignRight="@+id/addmember"
+        android:layout_alignEnd="@+id/addmember" />
 
     <Button
         android:layout_width="wrap_content"
@@ -47,5 +48,15 @@
         android:id="@+id/addmember"
         android:layout_below="@+id/button"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Tasks"
+        android:id="@+id/viewTasks"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/AppHeader"
+        android:layout_alignEnd="@+id/AppHeader"
+        android:background="#ff8700" />
 
 </RelativeLayout>
