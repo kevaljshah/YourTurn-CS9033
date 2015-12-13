@@ -18,7 +18,7 @@ import models.User;
 public class RegisterActivity extends Activity implements View.OnClickListener {
 
     ImageButton imageButton4;
-    EditText editText3,editText4,editText5,editText6,editText7,editText8;
+    EditText editText3,editText4,editText5,editText6,editText7,editText8,editGroup;
 
     private static final String TAG = "RegisterActivity";
     private static final String url = "jdbc:mysql://10.0.2.2:3306/yourturndb";
@@ -35,6 +35,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         editText6 = (EditText)findViewById(R.id.editText6);
         editText7 = (EditText)findViewById(R.id.editText7);
         editText8 = (EditText)findViewById(R.id.userbdate);
+        editGroup = (EditText) findViewById(R.id.groupname);
         imageButton4 = (ImageButton)findViewById(R.id.imageButton4);
 
 
@@ -72,6 +73,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         String uBDate = userBDate.getText().toString();
         user.setUserBDate(uBDate);
 
+        EditText userGroup = (EditText) findViewById(R.id.groupname);
+        String roomieGroup = userGroup.getText().toString();
+        user.setUserGroup(roomieGroup);
         return user;
     }
 

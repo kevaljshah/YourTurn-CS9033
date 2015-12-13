@@ -24,13 +24,15 @@ public class RegisterDatabaseHelper extends SQLiteOpenHelper {
         public static final String COLUMN_USER_PHNO = "uphno";
         public static final String COLUMN_USER_BDATE = "ubdate";
         public static final String COLUMN_USER_EMAIL = "uemail";
+        public static final String COLUMN_USER_GROUP = "uGroup";
         private static final String USER_DATABASE_CREATE =
                 "CREATE TABLE " + USER_DATABASE_NAME + " ( " +
                         COLUMN_USER_ID + " integer primary key autoincrement, " +
                         COLUMN_USER_NAME + " varchar(25), " +
                         COLUMN_USER_PHNO + " text, " +
                         COLUMN_USER_BDATE + " date, " +
-                        COLUMN_USER_EMAIL + " varchar(25), " + ")";
+                        COLUMN_USER_EMAIL + " varchar(25), " +
+                        COLUMN_USER_GROUP + "varchar(25) " +" )";
 
         private static final String DROP_TABLE_QUERY = "DROP TABLE IF EXISTS ";
 
@@ -60,6 +62,7 @@ public class RegisterDatabaseHelper extends SQLiteOpenHelper {
             Log.d("User Number: ", user.getUserNumber());
             values.put(COLUMN_USER_BDATE, user.getUserBDate());
             values.put(COLUMN_USER_EMAIL, user.getUserEmail());
+            values.put(COLUMN_USER_GROUP,user.getUserGroup());
 
             return getWritableDatabase().insert(USER_DATABASE_NAME, null, values);
         }

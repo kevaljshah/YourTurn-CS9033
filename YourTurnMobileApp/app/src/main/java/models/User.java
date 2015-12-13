@@ -13,6 +13,7 @@ public class User implements Parcelable {
     private String userNumber;
     private String userBDate;
     private String userEmail;
+    private String userGroup;
 
     public long getUserId() {
         return userId;
@@ -34,6 +35,8 @@ public class User implements Parcelable {
         return userNumber;
     }
 
+    public String getUserGroup() { return userGroup; }
+
     public void setUserNumber(String userNumber) {
         this.userNumber = userNumber;
     }
@@ -54,6 +57,8 @@ public class User implements Parcelable {
         this.userEmail = userEmail;
     }
 
+    public void setUserGroup(String roomieGroup) { this.userGroup = userGroup; }
+
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         public User createFromParcel(Parcel p) {
             return new User(p);
@@ -70,9 +75,10 @@ public class User implements Parcelable {
         this.userNumber = p.readString();
         this.userEmail = p.readString();
         this.userBDate = p.readString();
+        this.userGroup = p.readString();
     }
 
-    public User(long userId, String userName, String userNumber, String userEmail, String userBDate) {
+    public User(long userId, String userName, String userNumber, String userEmail, String userBDate, String userGroup) {
 
     }
 
