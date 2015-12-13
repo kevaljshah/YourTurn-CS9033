@@ -5,26 +5,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.yourturnmobileapp.R;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-	Button button;
+	ImageButton ImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-		button = (Button) findViewById(R.id.button);
-		button.setOnClickListener(this);
+		ImageButton = (ImageButton) findViewById(R.id.button);
+		ImageButton.setOnClickListener(this);
 
-		button = (Button) findViewById(R.id.addmember);
-		button.setOnClickListener(this);
+		ImageButton = (ImageButton) findViewById(R.id.addmember);
+		ImageButton.setOnClickListener(this);
 
-		button = (Button) findViewById(R.id.viewTasks);
-		button.setOnClickListener(this);
+		ImageButton = (ImageButton) findViewById(R.id.viewTasks);
+		ImageButton.setOnClickListener(this);
+
+		ImageButton = (ImageButton) findViewById(R.id.supplies);
+		ImageButton.setOnClickListener(this);
+
+
 	}
 
 	@Override
@@ -43,6 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				startActivity(new Intent(this, ViewTaskActivity.class));
 
 				break;
+
 		}
 	}
 	public void startCreateSupplyList(View view)
