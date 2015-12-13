@@ -2,6 +2,8 @@ package com.example.yourturnmobileapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,12 +11,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 
 /**
  * Created by Keval on 02-11-2015.
@@ -25,6 +30,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     Button Reghere;
     LoginButton fblogin;
     private CallbackManager callbackManager;
+    ProfilePictureView profilePictureView;
+    TextView greeting;
 
 
     @Override
@@ -34,20 +41,22 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         callbackManager= CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
-
-        editText = (EditText) findViewById(R.id.editText);
-        editText2 = (EditText) findViewById(R.id.editText2);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
         Reghere = (Button) findViewById(R.id.Reghere);
         imageButton.setOnClickListener(this);
         Reghere.setOnClickListener(this);
         fblogin = (LoginButton) findViewById(R.id.fblogin_button);
+        profilePictureView = (ProfilePictureView) findViewById(R.id.profilePic);
+        greeting = (TextView) findViewById(R.id.greeting);
 
         fblogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
-                Intent mainLobby = new Intent(LoginActivity.this, MainActivity.class);
+                Profile profile = Profile.getCurrentProfile();
+                profilePictureView.setProfileId(profile.getId());
+                greeting.setText("Welcome " + profile.getFirstName() + "! ");
+                Intent mainLobby = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(mainLobby);
             }
 

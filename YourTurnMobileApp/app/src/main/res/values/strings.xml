@@ -13,14 +13,14 @@
     </string>
 
     <string name="invite">Send invitations!</string>
-    <string name="welcome">App Invite\nQuickstart</string>
+    <string name="welcome">Invite Roomies</string>
     <string name="referrer_hint">Deep link not provided</string>
     <string name="deep_link_default">Deep link not set</string>
     <string name="invitation_id_default">Invitation ID not set</string>
     <string name="invite_friends">Invite Friends</string>
 
-    <string name="invitation_title">Send App Invite Quickstart Invitation</string>
-    <string name="invitation_message">This app is terrific, give it a try and get $5 off!</string>
+    <string name="invitation_title">YourTurn App Invite</string>
+    <string name="invitation_message">Help me organize our daily chores and tasks! Install this app!</string>
     <string name="invitation_deep_link">http://example.com/offer/five_dollar_offer</string>
     <string name="invitation_custom_image">https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png</string>
     <string name="invitation_cta">Install!</string>

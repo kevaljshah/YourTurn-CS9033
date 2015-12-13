@@ -1,6 +1,5 @@
 package com.example.yourturnmobileapp;
 
-import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,10 +15,10 @@ import com.google.android.gms.appinvite.AppInviteInvitationResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 /**
- * Created by Keval on 30-11-2015.
+ * Main Activity for sending App Invites and launching the DeepLinkActivity when an
+ * App Invite is received.
  */
 public class AddMemberActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
@@ -38,7 +37,7 @@ public class AddMemberActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_addmember);
 
         // Invite button click listener
-        findViewById(R.id.imageButton3).setOnClickListener(this);
+        findViewById(R.id.invite_button).setOnClickListener(this);
         // [END_EXCLUDE]
 
         // Create an auto-managed GoogleApiClient with acccess to App Invites.
@@ -117,10 +116,9 @@ public class AddMemberActivity extends AppCompatActivity implements
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.imageButton3:
+            case R.id.invite_button:
                 onInviteClicked();
                 break;
         }
     }
 }
-
