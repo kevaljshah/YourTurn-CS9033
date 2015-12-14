@@ -165,8 +165,18 @@
             android:background="@android:color/transparent"
             android:src="@drawable/icon_home_logo"
             android:layout_below="@+id/textView6"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="29dp" />
+            android:layout_alignRight="@+id/textView4"
+            android:layout_alignEnd="@+id/textView4" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/swapTask"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_swap_arrows"
+            android:layout_alignTop="@+id/goHome"
+            android:layout_alignLeft="@+id/viewAssignee"
+            android:layout_alignStart="@+id/viewAssignee" />
 
     </RelativeLayout>
 </ScrollView>

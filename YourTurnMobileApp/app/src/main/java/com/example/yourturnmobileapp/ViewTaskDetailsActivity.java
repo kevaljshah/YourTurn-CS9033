@@ -34,11 +34,20 @@ public class ViewTaskDetailsActivity extends Activity {
        viewTask(task);
 
 
-        final ImageButton createTask1 = (ImageButton) findViewById(R.id.goHome);
-        createTask1.setOnClickListener(new View.OnClickListener() {
+        final ImageButton home = (ImageButton) findViewById(R.id.goHome);
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final ImageButton swap = (ImageButton) findViewById(R.id.swapTask);
+        swap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), SwapTasksActivity.class);
                 startActivity(intent);
             }
         });

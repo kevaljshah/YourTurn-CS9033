@@ -3,11 +3,12 @@ package com.example.yourturnmobileapp;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,29 +18,32 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Date;
 
 import helper.AlarmReceiver;
+import helper.SessionHelper;
 import helper.TaskDatabaseHelper;
-import helper.TimePickerFragment;
 import models.Task;
 
 /**
- * Created by Apoorva Walimbe on 10/31/2015.
+ * Created by Apoorva on 10/31/2015.
  */
 public class AddTaskActivity extends Activity {
 
     private static final String TAG = "AddTaskActivity";
-    private static final String url = "jdbc:mysql://10.0.2.2:3306/yourturndb";
-    private static final String user = "root";
-    private static final String pass = "";
+    private static final String url = "jdbc:mysql://androidinstance.cgrfkz1xyvvw.us-east-1.rds.amazonaws.com:3306/androidyourturn";
+    private static final String user = "awsuser";
+    private static final String pass = "apoorva123";
     EditText dueDate;
     Calendar tripCalendarDate;
     private Spinner assignee;
@@ -52,6 +56,9 @@ public class AddTaskActivity extends Activity {
     Button setReminder;
     TimePickerDialog timePickerDialog;
     final static int RQS_1 = 1;
+    private SessionHelper session;
+    Context cntx;
+    Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +68,14 @@ public class AddTaskActivity extends Activity {
         taskName = (EditText) findViewById(R.id.taskName);
         taskDesc = (EditText) findViewById(R.id.taskDesc);
         alarmTimePicker = (EditText) findViewById(R.id.alarmTimePicker);
-        //alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         setReminder = (Button) findViewById(R.id.setReminder);
 
         final ImageButton createTask1 = (ImageButton) findViewById(R.id.createTask1);
         createTask1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Task task = createTask();
-                saveTask(task);
+                task = createTask();
+                Connect();
             }
         });
 
@@ -91,12 +97,9 @@ public class AddTaskActivity extends Activity {
                     int currentYear = currentDate.get(Calendar.YEAR);
                     int currentMonth = currentDate.get(Calendar.MONTH);
                     int currentDay = currentDate.get(Calendar.DAY_OF_MONTH);
-
                     DatePickerDialog mDatePicker = new DatePickerDialog(AddTaskActivity.this, new DatePickerDialog.OnDateSetListener() {
                         public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-
                             tripCalendarDate = Calendar.getInstance();
-
                             tripCalendarDate.set(selectedyear, selectedmonth, selectedday);
                             SimpleDateFormat format1 = new SimpleDateFormat("MMM dd, yyyy");
                             dueDate.setText(format1.format(tripCalendarDate.getTime()));
@@ -111,16 +114,6 @@ public class AddTaskActivity extends Activity {
             }
         });
 
-        /*alarmTimePicker.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    DialogFragment newFragment = new TimePickerFragment();
-                    newFragment.show(getFragmentManager(),"TimePicker");
-                }
-            }
-        });*/
-
         setReminder.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -132,14 +125,18 @@ public class AddTaskActivity extends Activity {
             }});
 
         assignee = (Spinner) findViewById(R.id.assignee);
-        List<String> assignees = new ArrayList<String>();
-        assignees.add("--Select--");
+        ArrayList<String> assignees = new ArrayList<String>();
+        TaskDatabaseHelper registerDatabaseHelper = new TaskDatabaseHelper(getBaseContext());
+        SharedPreferences sp=getSharedPreferences("key", Context.MODE_PRIVATE);
+        String groupID = sp.getString("groupID", null);
+        //assignees = registerDatabaseHelper.fetchGroupMembers(groupID);
+        assignees.add(0, "--Select--");
         assignees.add("Apoorva");
-        assignees.add("Shweta");
-        assignees.add("Saudamini");
         ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,assignees);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assignee.setAdapter(dataAdapter);
+
+
     }
 
     private void openTimePickerDialog(boolean is24r){
@@ -191,51 +188,18 @@ public class AddTaskActivity extends Activity {
         task.setTaskName(taskName.getText().toString());
         task.setTaskDesc(taskDesc.getText().toString());
         task.setAssignee(String.valueOf(assignee.getSelectedItem()));
-        task.setDueDate(dueDate.getText().toString());
-        return task;
-    }
+        try {
+            SimpleDateFormat from = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = from.parse(dueDate.getText().toString());       // 01/02/2014
+            String mysqlString = to.format(date);     // 2014-02-01
+            task.setDueDate(mysqlString);
 
-    public void saveTask(Task task) {
-        //code to persist the data into database
-        /*Connection con = null;
-        Statement stmt = null;
-        try{
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection(url, user, pass);
-            System.out.println("Database connection successful");
-            stmt = con.createStatement();
-            int results = stmt.executeUpdate("INSERT INTO tasks VALUES ("+task.getTaskName()+","+task.getTaskDesc()+
-                    ","+task.getDueDate()+",null,"+task.getAssignee()+",0,0)");
-            if (results == 1) {
-                Toast.makeText(getBaseContext(), "Task added successfully", Toast.LENGTH_LONG).show();
-            }
-        } catch (Exception exception) {
+        } catch(ParseException exception) {
             exception.printStackTrace();
-        } finally {
-            try{
-                stmt.close();
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }*/
-
-        if(taskName.getText().toString().equals("") || taskDesc.getText().toString().equals("")
-                || dueDate.getText().toString().equals("")
-                || String.valueOf(assignee.getSelectedItem()).matches("--Select--")) {
-            Toast.makeText(getBaseContext(), "Enter every field to create a new task", Toast.LENGTH_LONG).show();
-        } else {
-            Log.d("Saving Trip", task.toString());
-            Intent intent = new Intent();
-            intent.putExtra("TaskData", task);
-            setResult(RESULT_OK, intent);
-            TaskDatabaseHelper databaseHelper = new TaskDatabaseHelper(getBaseContext());
-            long taskID = databaseHelper.insertTask(task);
-            Toast.makeText(getBaseContext(), "Task created successfully.", Toast.LENGTH_LONG).show();
-            Log.d("Task created with id: ", Long.toString(taskID));
-            Intent viewTaskIntent = new Intent(getBaseContext(), ViewTaskActivity.class);
-            startActivity(viewTaskIntent);
         }
+        task.setAssignor("Keval");
+        return task;
     }
 
     public void cancelTask() {
@@ -244,6 +208,48 @@ public class AddTaskActivity extends Activity {
         finish();
     }
 
+    private class Connect extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            Connection con = null;
+            Statement stmt = null;
+            try{
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Database connection successful");
+                stmt = con.createStatement();
+
+                String queryStr = "INSERT INTO TASKS (tname, tdesc, tdate, tassignee, tassignor, treminder, tstatus) VALUES ('" +
+                        task.getTaskName()+"','"+task.getTaskDesc()+
+                        "','"+task.getDueDate()+ "','" + task.getAssignee() + "','" + task.getAssignor()+"',0,0)";
+                int results = stmt.executeUpdate(queryStr);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            } finally {
+                try{
+                    stmt.close();
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getBaseContext(), "Task added successfully", Toast.LENGTH_LONG).show();
+            Intent viewTaskIntent = new Intent(getBaseContext(), ViewTaskActivity.class);
+            startActivity(viewTaskIntent);
+        }
+    }
+
+    public void Connect() {
+        Connect task = new Connect();
+        task.execute();
+
+    }
 
 }
 

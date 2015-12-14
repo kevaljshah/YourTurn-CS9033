@@ -107,6 +107,25 @@
         android:layout_alignRight="@+id/addmember"
         android:layout_alignEnd="@+id/addmember" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewMembers"
+        android:layout_marginTop="31dp"
+        android:src="@drawable/icon_members"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/viewtask"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="VIEW MEMBERS"
+        android:id="@+id/viewMembersText"
+        android:layout_below="@+id/viewMembers"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
     </ScrollView>

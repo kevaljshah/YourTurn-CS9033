@@ -97,8 +97,8 @@ public class Task implements Parcelable {
         this.taskName = p.readString();
         this.taskDesc = p.readString();
         this.dueDate = p.readString();
-        this.assignee = p.readString();
         this.assignor = p.readString();
+        this.assignee = p.readString();
         //this.reminder = p.
     }
 
@@ -128,8 +128,8 @@ public class Task implements Parcelable {
         dest.writeString(taskName);
         dest.writeString(taskDesc);
         dest.writeString(dueDate);
-        dest.writeString(assignee);
         dest.writeString(assignor);
+        dest.writeString(assignee);
     }
 
     public void readFromParcel(Parcel in) {
@@ -137,8 +137,8 @@ public class Task implements Parcelable {
         taskName = in.readString();
         taskDesc = in.readString();
         dueDate = in.readString();
-        assignee = in.readString();
         assignor = in.readString();
+        assignee = in.readString();
     }
 
     @Override

@@ -57,7 +57,7 @@ public class User implements Parcelable {
         this.userEmail = userEmail;
     }
 
-    public void setUserGroup(String roomieGroup) { this.userGroup = userGroup; }
+    public void setUserGroup(String userGroup) { this.userGroup = userGroup; }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         public User createFromParcel(Parcel p) {

@@ -30,7 +30,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		ImageButton = (ImageButton) findViewById(R.id.supplies);
 		ImageButton.setOnClickListener(this);
 
-
+		ImageButton = (ImageButton) findViewById(R.id.viewMembers);
+		ImageButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -47,6 +48,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 			case R.id.viewTasks:
 				startActivity(new Intent(this, ViewTaskActivity.class));
+
+				break;
+
+			case R.id.viewMembers:
+				startActivity(new Intent(this, ViewMembersActivity.class));
 
 				break;
 

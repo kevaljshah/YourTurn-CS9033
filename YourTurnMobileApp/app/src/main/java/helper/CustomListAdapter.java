@@ -15,13 +15,11 @@ import java.util.ArrayList;
 import models.Task;
 
 /**
- * Created by Apoorva Walimbe on 12/11/2015.
+ * Created by Apoorva on 12/11/2015.
  */
 public class CustomListAdapter extends ArrayAdapter<Task> {
 
     private final Activity context;
-    //private final String[] itemname;
-    //private final Integer[] imgid;
     private ArrayList<Task> tasks;
 
     public CustomListAdapter(Activity context, ArrayList<Task> taskList) {

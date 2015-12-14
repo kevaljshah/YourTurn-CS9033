@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -21,7 +22,9 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name">
+
+        </activity>
 
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -65,6 +68,18 @@
         <activity
             android:name=".AddMemberActivity"
             android:label="add_member">
+
+        </activity>
+
+        <activity
+            android:name=".ViewMembersActivity"
+            android:label="view_member">
+
+        </activity>
+
+        <activity
+            android:name=".SwapTasksActivity"
+            android:label="swap_tasks">
 
         </activity>
 
