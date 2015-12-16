@@ -73,6 +73,7 @@
         android:layout_below="@+id/members"
         android:layout_alignLeft="@+id/button"
         android:layout_alignStart="@+id/button"
+        android:onClick="startCreateSupplyList"
         android:background="@android:color/transparent"
         android:src="@drawable/supplies" />
 

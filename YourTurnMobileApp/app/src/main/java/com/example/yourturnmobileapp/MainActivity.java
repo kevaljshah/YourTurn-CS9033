@@ -13,10 +13,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 	ImageButton ImageButton;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
 		ImageButton = (ImageButton) findViewById(R.id.button);
 		ImageButton.setOnClickListener(this);
@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button:
-				startActivity((new Intent(this,AddTaskActivity.class)));
+				startActivity((new Intent(this, AddTaskActivity.class)));
 
 				break;
 			case R.id.addmember:
@@ -55,13 +55,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				startActivity(new Intent(this, ViewMembersActivity.class));
 
 				break;
+			case R.id.supplies:
+				startActivity(new Intent(this, CreateSupplyList.class));
+
+				break;
 
 		}
-	}
-	public void startCreateSupplyList(View view)
-	{
-		Intent intent = new Intent(this, CreateSupplyList.class);
-		startActivity(intent);
 	}
 
 }

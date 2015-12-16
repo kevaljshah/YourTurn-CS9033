@@ -4,12 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 import helper.SessionHelper;
 import helper.TaskDatabaseHelper;
@@ -24,11 +29,12 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     EditText editText3,editText4,editText5,editText6,editText7,editText8,editGroup;
 
     private static final String TAG = "RegisterActivity";
-    private static final String url = "jdbc:mysql://10.0.2.2:3306/yourturndb";
-    private static final String user = "root";
-    private static final String pass = "";
+    private static final String url = "jdbc:mysql://androidinstance.cgrfkz1xyvvw.us-east-1.rds.amazonaws.com:3306/androidyourturn";
+    private static final String user = "awsuser";
+    private static final String pass = "apoorva123";
     private SessionHelper session;
     Context cntx;
+    User userObj;
 
 
     @Override
@@ -55,8 +61,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         {
             case R.id.imageButton4:
 
-                User user = registerUser();
-                saveUser(user);
+                userObj = registerUser();
+                //saveUser(user);
+                Connect();
                 break;
         }
     }
@@ -135,6 +142,49 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         Intent intent = new Intent();
         setResult(RESULT_CANCELED,intent);
         finish();
+    }
+
+    private class Connect extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            Connection con = null;
+            Statement stmt = null;
+            try{
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Database connection successful");
+                stmt = con.createStatement();
+
+                String queryStr = "INSERT INTO PERSONS (uname,uphno,ubdate,umail,uGroup) VALUES ('" +
+                        userObj.getUserName() + "','" + userObj.getUserNumber() + "','" + userObj.getUserBDate()
+                        + "','" + userObj.getUserEmail() + "','" + userObj.getUserGroup() +"')";
+                int results = stmt.executeUpdate(queryStr);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            } finally {
+                try{
+                    stmt.close();
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getBaseContext(), "User added successfully", Toast.LENGTH_LONG).show();
+            Intent viewTaskIntent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(viewTaskIntent);
+        }
+    }
+
+    public void Connect() {
+        Connect task = new Connect();
+        task.execute();
+
     }
 
 

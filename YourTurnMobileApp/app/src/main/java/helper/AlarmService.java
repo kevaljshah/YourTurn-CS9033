@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.yourturnmobileapp.AddTaskActivity;
 import com.example.yourturnmobileapp.R;
+import com.example.yourturnmobileapp.ViewTaskActivity;
 
 /**
  * Created by Apoorva Walimbe on 12/10/2015.
@@ -33,7 +34,7 @@ public class AlarmService extends IntentService {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, AddTaskActivity.class), 0);
+                new Intent(this, ViewTaskActivity.class), 0);
 
         NotificationCompat.Builder alamNotificationBuilder = new NotificationCompat.Builder(
                 this).setContentTitle("Alarm").setSmallIcon(R.drawable.ic_launcher)

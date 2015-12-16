@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +35,7 @@ import helper.AlarmReceiver;
 import helper.SessionHelper;
 import helper.TaskDatabaseHelper;
 import models.Task;
+import models.User;
 
 /**
  * Created by Apoorva on 10/31/2015.
@@ -46,7 +48,7 @@ public class AddTaskActivity extends Activity {
     private static final String pass = "apoorva123";
     EditText dueDate;
     Calendar tripCalendarDate;
-    private Spinner assignee;
+    public Spinner assignee;
     EditText taskName;
     EditText taskDesc;
     AlarmManager alarmManager;
@@ -59,6 +61,7 @@ public class AddTaskActivity extends Activity {
     private SessionHelper session;
     Context cntx;
     Task task;
+    ArrayList<String> memberList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,11 @@ public class AddTaskActivity extends Activity {
         taskDesc = (EditText) findViewById(R.id.taskDesc);
         alarmTimePicker = (EditText) findViewById(R.id.alarmTimePicker);
         setReminder = (Button) findViewById(R.id.setReminder);
+        assignee = (Spinner) findViewById(R.id.assignee);
+
+        ConnectToLoad(this);
+
+
 
         final ImageButton createTask1 = (ImageButton) findViewById(R.id.createTask1);
         createTask1.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +109,7 @@ public class AddTaskActivity extends Activity {
                         public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                             tripCalendarDate = Calendar.getInstance();
                             tripCalendarDate.set(selectedyear, selectedmonth, selectedday);
-                            SimpleDateFormat format1 = new SimpleDateFormat("MMM dd, yyyy");
+                            SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
                             dueDate.setText(format1.format(tripCalendarDate.getTime()));
                             dueDate.clearFocus();
                         }
@@ -124,19 +132,25 @@ public class AddTaskActivity extends Activity {
 
             }});
 
-        assignee = (Spinner) findViewById(R.id.assignee);
-        ArrayList<String> assignees = new ArrayList<String>();
-        TaskDatabaseHelper registerDatabaseHelper = new TaskDatabaseHelper(getBaseContext());
-        SharedPreferences sp=getSharedPreferences("key", Context.MODE_PRIVATE);
-        String groupID = sp.getString("groupID", null);
+
+
+
+
+
+        //ArrayList<String> assignees = new ArrayList<String>();
+        //TaskDatabaseHelper registerDatabaseHelper = new TaskDatabaseHelper(getBaseContext());
+        //SharedPreferences sp=getSharedPreferences("key", Context.MODE_PRIVATE);
+        //String groupID = sp.getString("groupID", null);
         //assignees = registerDatabaseHelper.fetchGroupMembers(groupID);
-        assignees.add(0, "--Select--");
-        assignees.add("Apoorva");
-        ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,assignees);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        assignee.setAdapter(dataAdapter);
+        //assignees.add(0, "--Select--");
+        //assignees.add("Apoorva");
 
 
+
+    }
+
+    public void setList(ArrayList<String> memList) {
+        this.memberList = memList;
     }
 
     private void openTimePickerDialog(boolean is24r){
@@ -204,7 +218,7 @@ public class AddTaskActivity extends Activity {
 
     public void cancelTask() {
         Intent intent = new Intent();
-        setResult(RESULT_CANCELED,intent);
+        setResult(RESULT_CANCELED, intent);
         finish();
     }
 
@@ -247,6 +261,64 @@ public class AddTaskActivity extends Activity {
 
     public void Connect() {
         Connect task = new Connect();
+        task.execute();
+
+    }
+
+    private class ConnectToLoad extends AsyncTask<String, Void, ArrayList<String>> {
+
+        private AddTaskActivity addTaskActivity;
+        private ArrayList<String> memberList = new ArrayList<>();
+
+        public ConnectToLoad(AddTaskActivity activity) {
+            this.addTaskActivity = activity;
+        }
+
+
+        @Override
+        protected ArrayList<String> doInBackground(String... urls) {
+
+            Connection con = null;
+            Statement stmt = null;
+            try{
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Database connection successful");
+                stmt = con.createStatement();
+
+               String queryString = "SELECT * FROM PERSONS";
+               ResultSet rs = stmt.executeQuery(queryString);
+                String uName;
+                while(rs.next()){
+                    uName = rs.getString(2);
+                    memberList.add(uName);
+                }
+
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            } finally {
+                try{
+                    stmt.close();
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return memberList;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<String> memberList) {
+            //memberList = this.addTaskActivity.memberList;
+            addTaskActivity.setList(this.memberList);
+            ArrayAdapter dataAdapter = new ArrayAdapter(this.addTaskActivity, android.R.layout.simple_spinner_item,this.memberList);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            assignee.setAdapter(dataAdapter);
+        }
+    }
+
+    public void ConnectToLoad(AddTaskActivity activity) {
+        ConnectToLoad task = new ConnectToLoad(activity);
         task.execute();
 
     }

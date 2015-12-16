@@ -44,31 +44,9 @@ public class ViewTaskActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_task);
-
         context=this;
         Connect(this);
-        //listView=(ListView) findViewById(R.id.listView);
-        //listView.setAdapter(new CustomAdapter(this, prgmNameList, prgmImages));
-
-        CustomListAdapter adapter=new CustomListAdapter(this, tasks);
         listView=(ListView)findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // TODO Auto-generated method stub
-                Task selectedTaskItem = tasks.get(+position);
-                //String selectedTask = tasks.get(+position).getTaskName();
-                //Toast.makeText(getApplicationContext(), selectedTask, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getBaseContext(), ViewTaskDetailsActivity.class);
-                intent.putExtra("TaskObject", selectedTaskItem);
-                intent.putExtra("TaskName", selectedTaskItem.getTaskName());
-                startActivity(intent);
-            }
-        });
     }
 
     public void setList(ArrayList<Task> taskArrayList) {
@@ -82,14 +60,6 @@ public class ViewTaskActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private ArrayList<Task> viewTasks() {
-        ArrayList<Task> tasks = new ArrayList<Task>();
-        TaskDatabaseHelper databaseHelper = new TaskDatabaseHelper(getBaseContext());
-        //Cursor cursor = databaseHelper.fetchTasks();
-        tasks = databaseHelper.fetchTasks();
-        return tasks;
     }
 
     private class Connect extends AsyncTask<String, Void, ArrayList<Task>> {
@@ -144,8 +114,25 @@ public class ViewTaskActivity extends Activity {
         protected void onPostExecute(ArrayList<Task> taskList) {
             viewTaskActivity.setList(this.taskList);
             CustomListAdapter adapter=new CustomListAdapter(this.viewTaskActivity, taskList);
-            listView=(ListView)findViewById(R.id.listView);
+            //listView=(ListView)findViewById(R.id.listView);
             listView.setAdapter(adapter);
+
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    // TODO Auto-generated method stub
+                    Task selectedTaskItem = tasks.get(+position);
+                    //String selectedTask = tasks.get(+position).getTaskName();
+                    //Toast.makeText(getApplicationContext(), selectedTask, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getBaseContext(), ViewTaskDetailsActivity.class);
+                    intent.putExtra("TaskObject", selectedTaskItem);
+                    intent.putExtra("TaskName", selectedTaskItem.getTaskName());
+                    startActivity(intent);
+                }
+            });
         }
     }
 
