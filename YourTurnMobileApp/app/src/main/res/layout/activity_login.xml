@@ -103,7 +103,28 @@
             android:id="@+id/greeting"
             android:gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:layout_below="@+id/profilePic"
+            android:layout_below="@+id/fblogin_button"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:hint="Enter Password"
+            android:id="@+id/password"
+            android:layout_marginBottom="30dp"
+            android:layout_below="@+id/username"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/username"
+            android:layout_marginTop="20dp"
+            android:hint="Enter Username"
+            android:layout_marginBottom="30dp"
+            android:layout_below="@+id/view"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>

@@ -13,6 +13,7 @@ public class User implements Parcelable {
     private String userNumber;
     private String userBDate;
     private String userEmail;
+    private String userPass;
     private String userGroup;
 
     public long getUserId() {
@@ -36,6 +37,11 @@ public class User implements Parcelable {
     }
 
     public String getUserGroup() { return userGroup; }
+
+    public String getUserPass() { return userPass;
+    }
+
+    public void setUserPass() { this.userPass = userPass; }
 
     public void setUserNumber(String userNumber) {
         this.userNumber = userNumber;
@@ -74,11 +80,12 @@ public class User implements Parcelable {
         this.userName = p.readString();
         this.userNumber = p.readString();
         this.userEmail = p.readString();
+        this.userPass = p.readString();
         this.userBDate = p.readString();
         this.userGroup = p.readString();
     }
 
-    public User(long userId, String userName, String userNumber, String userEmail, String userBDate, String userGroup) {
+    public User(long userId, String userName, String userNumber, String userEmail, String userPass, String userBDate, String userGroup) {
 
     }
 

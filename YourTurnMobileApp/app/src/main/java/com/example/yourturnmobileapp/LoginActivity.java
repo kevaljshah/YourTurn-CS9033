@@ -39,6 +39,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     ProfilePictureView profilePictureView;
     private TextView greeting;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +52,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         imageButton.setOnClickListener(this);
         Reghere.setOnClickListener(this);
         fblogin = (LoginButton) findViewById(R.id.fblogin_button);
-        profilePictureView = (ProfilePictureView) findViewById(R.id.profilePic);
         greeting = (TextView) findViewById(R.id.greeting);
+        editText = (EditText) findViewById(R.id.username);
+        editText2 = (EditText) findViewById(R.id.password);
 
         fblogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
